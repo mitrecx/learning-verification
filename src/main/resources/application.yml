@@ -1,0 +1,8 @@
+custom:
+  emails:
+    - "Hello"
+    - "World"
+    - "Spring Boot"
+
+mitre:
+  name: cx

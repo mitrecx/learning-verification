@@ -1,36 +1,35 @@
 package com.example.boot01web01.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.boot01web01.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/hello")
 public class HelloController {
-    @RequestMapping("/test")
-    public String test() {
-        return "test";
-    }
+    @Autowired
+    private EmailService emailService;
 
-    @GetMapping("/user")
+    @GetMapping("/query")
     public String getUser() {
-        System.out.println("getUser方法执行了 ...");
-        System.out.println("123...啥事");
+        System.out.println("开始 ...");
+        emailService.sendEmail("Hello", "Hello World");
+        System.out.println("结束 ...");
         return "GET-张三";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @PostMapping("/save")
     public String saveUser() {
         return "POST-张三";
     }
 
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @PutMapping(value = "/update")
     public String putUser() {
         return "PUT-张三";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
+    @DeleteMapping("/delete")
     public String deleteUser() {
         return "DELETE-张三";
     }
