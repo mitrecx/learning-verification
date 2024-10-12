@@ -2,20 +2,27 @@ package com.example.boot01web01.controller;
 
 import com.example.boot01web01.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hello")
+@PropertySource(value = "classpath:hello.properties")
 public class HelloController {
     @Autowired
     private EmailService emailService;
 
+    @Value("${controller.greeting}")
+    private String greeting;
+
     @GetMapping("/query")
-    public String getUser() {
+    public String query() {
         System.out.println("开始 ...");
         emailService.sendEmail("Hello", "Hello World");
         System.out.println("结束 ...");
-        return "GET-张三";
+        System.out.println("greeting:" + greeting);
+        return greeting;
     }
 
     @PostMapping("/save")
