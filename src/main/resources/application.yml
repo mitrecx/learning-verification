@@ -6,3 +6,10 @@ custom:
 
 mitre:
   name: cx
+
+knife4j:
+  enable: true # 启用 Knife4j
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher # 必须设置，确保兼容性
